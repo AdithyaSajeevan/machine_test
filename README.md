@@ -1,52 +1,43 @@
-# order_management
-# order_management
-# Order Management API
-
-This project implements a simple Order Management REST API using Django REST Framework.
-
-Features
-- JWT Authentication
-- Role-based access control
-- Nested order creation
-- Admin and Customer roles
-- Order total calculation
-
-Setup Instructions
-
-1. Clone repository
-2. Install dependencies
-
+1. Install dependencies
 pip install django djangorestframework djangorestframework-simplejwt
-
-3. Run migrations
-
+2. Apply migrations
+python manage.py makemigrations
 python manage.py migrate
-
-4. Run server
-
+3. Run the server
 python manage.py runserver
-
-API Endpoints
-
-Register
-POST /api/register/
-
-Login
-POST /api/login/
-
-Products
-GET /api/products/
-POST /api/products/
-
-Orders
-GET /api/orders/
-POST /api/orders/create/
-
-Update Order
-PUT /api/orders/{id}/
 
 Authentication
 
-JWT Token must be added in header
+Register a new user
 
-Authorization: Bearer <token>
+POST /api/register/
+
+Login and receive JWT token
+
+POST /api/login/
+
+Products
+
+Get all products
+
+GET /api/products/
+
+Create a product (Admin only)
+
+POST /api/products/
+
+Orders
+
+Create a new order
+
+POST /api/orders/
+
+View orders
+
+Admin: view all orders
+Customer: view their own orders
+GET /api/orders/list/
+
+Update an order (Admin only)
+
+PUT /api/orders/{id}/
