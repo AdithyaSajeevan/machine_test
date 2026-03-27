@@ -1,11 +1,8 @@
-from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Product, Order
 from .serializers import *
 from .permissions import *
-
-# Create your views here.
 
 
 class RegisterView(generics.CreateAPIView):
@@ -16,9 +13,7 @@ class ProductListCreateView(generics.ListCreateAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+    permission_classes = [IsAuthenticated, IsAdmin]
 
 
 class OrderCreateView(generics.CreateAPIView):
